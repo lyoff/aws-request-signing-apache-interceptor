@@ -106,6 +106,8 @@ public class AWSRequestSigningApacheInterceptor implements HttpRequestIntercepto
                     (HttpEntityEnclosingRequest) request;
             if (httpEntityEnclosingRequest.getEntity() != null) {
                 signableRequest.setContent(httpEntityEnclosingRequest.getEntity().getContent());
+            } else {
+                signableRequest.setContent(new StringInputSream(""));
             }
         }
         signableRequest.setParameters(nvpToMapParams(uriBuilder.getQueryParams()));
